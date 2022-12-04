@@ -15,7 +15,7 @@ const Card = (props) => {
     return(          
             <div className="card">
                 <div className="close" onClick={Delete}></div>
-                <div className="content">{note.content}</div>                        
+                <div className="content">{note.note.content}</div>                        
             </div> 
         )   
 }

@@ -5,7 +5,7 @@ import Card from './Card';
 import AddForm from './AddForm';
 import CardList from './CardsList';
 import { nanoid } from 'nanoid'
-
+import axios from "axios";
 
 const Page = () => {    
 
@@ -16,11 +16,34 @@ const [notes,setNotes] = useState([]);
       id : nanoid(),
       content:content
     }
-    setNotes([...notes,note]);
+
+    axios.post(`http://localhost:7777/notes`, { note })
+      .then(res => {
+      })
+
+
+      UpdateNotes();
   }
 
   const DeleteNote = (note) => {
-    setNotes(notes.filter(n=>n!==note));
+    console.log(note);
+    axios.delete(`http://localhost:7777/notes/${note.id}`)
+    .then(res => {
+      //console.log(res);
+    })
+
+    UpdateNotes();
+  }
+
+
+  const UpdateNotes = () =>{
+    axios.get(`http://localhost:7777/notes`)
+      .then(res => {
+        console.log(res.data);
+        const updatedValue = res.data;
+        //const updatedNotes = updatedValue.map((item) => item.note);
+        setNotes(updatedValue);
+      })
   }
 
 
