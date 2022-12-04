@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Header from './Header';
 import Card from './Card';
 import AddForm from './AddForm';
+import CardList from './CardsList';
+import { nanoid } from 'nanoid'
 
 
 const Page = () => {    
@@ -11,7 +13,7 @@ const [notes,setNotes] = useState([]);
 
   const AddNote = (content) => {
     let note = {
-      id : 1,
+      id : nanoid(),
       content:content
     }
     setNotes([...notes,note]);
@@ -25,8 +27,13 @@ const [notes,setNotes] = useState([]);
     return(  
         <div>  
             <Header />
-            {notes.map((note,index)=><Card key={index} note={note} action={(note) => DeleteNote(note)}/>)}            
-            <AddForm action = {(content) => AddNote(content)}/>
+            <div>
+              {notes.length===0?
+                  <span>Пусто</span>
+                :
+                  <CardList notes = {notes} action = {(note) => {DeleteNote(note)}}/>}   
+            </div>     
+            <AddForm action = {(content) => {AddNote(content)}}/>
         </div>
         )   
 }
