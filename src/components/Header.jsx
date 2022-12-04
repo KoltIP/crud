@@ -1,11 +1,11 @@
 import React from "react";
-//import classes from '../styles/Header.css';
+import classes from '../styles/Header.css';
 
 
 const Header = (props) => {    
 
     return(  
-        <div className="Header">      
+        <div className="header">      
             <h2>Notes</h2>
         </div>
         )   
