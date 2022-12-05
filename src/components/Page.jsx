@@ -11,6 +11,8 @@ const Page = () => {
 
 const [notes,setNotes] = useState([]);
 
+
+
   const AddNote = (content) => {
     let note = {
       id : nanoid(),
@@ -45,7 +47,7 @@ const [notes,setNotes] = useState([]);
         setNotes(updatedValue);
       })
   }
-
+  UpdateNotes();
 
     return(  
         <div>  
