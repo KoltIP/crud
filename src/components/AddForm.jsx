@@ -15,7 +15,7 @@ const AddForm = (props) => {
             <div className="content">
                 <input className="" id="newContent"/>
             </div>
-            <button onClick={addNote}>Click</button>
+            <img onClick={addNote} width="60px" height="60px" src='./Icons/play.png' className="button"/>
         </div>
         )   
 }

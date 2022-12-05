@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import Card from './Card';
 import AddForm from './AddForm';
@@ -10,8 +10,6 @@ import axios from "axios";
 const Page = () => {    
 
 const [notes,setNotes] = useState([]);
-
-
 
   const AddNote = (content) => {
     let note = {
@@ -28,7 +26,6 @@ const [notes,setNotes] = useState([]);
   }
 
   const DeleteNote = (note) => {
-    console.log(note);
     axios.delete(`http://localhost:7777/notes/${note.id}`)
     .then(res => {
       //console.log(res);
@@ -41,13 +38,13 @@ const [notes,setNotes] = useState([]);
   const UpdateNotes = () =>{
     axios.get(`http://localhost:7777/notes`)
       .then(res => {
-        console.log(res.data);
         const updatedValue = res.data;
-        //const updatedNotes = updatedValue.map((item) => item.note);
         setNotes(updatedValue);
       })
   }
-  UpdateNotes();
+  
+  useEffect(()=>{UpdateNotes()},[])
+  
 
     return(  
         <div>  
